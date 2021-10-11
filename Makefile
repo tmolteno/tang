@@ -1,6 +1,6 @@
 YOSYS ?= yowasp-yosys
 NEXTPNR ?= yowasp-nextpnr-gowin
-PROGRAMMER ?= ./usr/local/bin/openFPGALoader
+PROGRAMMER ?= /usr/local/bin/openFPGALoader
 
 all: 	blinky-tangnano.fs
 

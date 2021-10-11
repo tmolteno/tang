@@ -42,7 +42,9 @@ Download the pin descriptios
 ## Using the Makefile
 
     make blinky-tangnano-prog
-    
+
+Requires openFPGALoader to be installed in /usr/local/bin/openFPGALoader.
+
 ### Using the tools by themselves
 
 Now synthesize the verilog, producing a blinky.json file:
