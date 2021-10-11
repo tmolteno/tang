@@ -61,8 +61,8 @@ The next step is to place and route the design onto the tang nano board.
 Then generate a programming file:
 
     gowin_pack -d GW1NR-UV9QN881C6/I5 -o pack.fs pnrblinky.json
-# gowin_unpack -d GW1NR-UV9QN881C6/I5 -o unpack.v pack.fs
-# yosys -p "read_verilog -lib +/gowin/cells_sim.v; clean -purge; show" unpack.v
+   # gowin_unpack -d GW1NR-UV9QN881C6/I5 -o unpack.v pack.fs
+   # yosys -p "read_verilog -lib +/gowin/cells_sim.v; clean -purge; show" unpack.v
 
 Finally program the device using openFPGALoader:
 
