@@ -12,7 +12,7 @@ clean:
 .PHONY: all clean
 
 %-tangnano-synth.json: %.v
-	$(YOSYS) -D LEDS_NR=3 -p "synth_gowin -json $@" $^
+	$(YOSYS) -D LEDS_NR=3 -p "read_verilog $^; synth_gowin -json $@" $^
 
 %-tangnano.json: %-tangnano-synth.json tangnano.cst
 	$(NEXTPNR) --json $< --write $@ --device GW1N-LV1QN48C6/I5 --cst tangnano.cst
