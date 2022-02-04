@@ -40,15 +40,22 @@ Download the pin descriptios
 
 ## Using the Makefile
 
+To just do the synthesis:
+
+    make blinky-tangnano.fs
+    
+
     make blinky-tangnano-prog
 
 Requires openFPGALoader to be installed in /usr/local/bin/openFPGALoader.
+
+    
 
 ### Using the tools by themselves
 
 Now synthesize the verilog, producing a blinky.json file:
 
-    yowasp-yosys -D LEDS_NR=3 -p "synth_gowin -json blinky.json" blinky.v
+    yowasp-yosys -D LEDS_NR=3 -p "read_verilog blinky.v; synth_gowin -json blinky.json" blinky.v
 
 The next step is to place and route the design onto the tang nano board.
 
