@@ -2,13 +2,11 @@ FROM debian:bullseye
 MAINTAINER Tim Molteno "tim@elec.ac.nz"
 ARG DEBIAN_FRONTEND=noninteractive
 
-# curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
 RUN apt-get update -y &&  apt-get install -y \
     python3-pip python3-numpy python3-dateutil \
-    libftdi1-2 libftdi1-dev libhidapi-libusb0 libhidapi-dev libudev-dev cmake pkg-config make g++
+    libftdi1-2 libftdi1-dev libhidapi-libusb0 libhidapi-dev libudev-dev \
+    cmake pkg-config make g++ wget unzip
 
-RUN apt-get install -y tree wget unzip
 RUN apt-get clean -y
 RUN rm -rf /var/lib/apt/lists/*
 
@@ -21,6 +19,7 @@ WORKDIR /src/openFPGALoader-master/build
 RUN cmake ..
 RUN cmake --build .
 RUN make install
+
 CMD openFPGALoader -v -b ${BOARD} /files/${BIN}
 # RUN mkdir -p dist/etc/udev/rules.d/
 # RUN cp ../99-openfpgaloader.rules dist/etc/udev/rules.d/

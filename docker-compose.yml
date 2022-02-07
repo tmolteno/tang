@@ -5,14 +5,14 @@ services:
     fpga:
         build: 
             context: .
+        # The following line gives access to the USB connected JTAG on the tangnano
         privileged: true
+        
+        # The current directory is mapped to /files in Docker. The binary file can then be accessed at /files.
         volumes:
             - .:/files
+            
+        # Change these to use a different board, and a different target.
         environment:
             - BOARD=tangnano
             - BIN=blinky-tangnano.fs
-        logging:
-            driver: "json-file"
-            options:
-                max-file: "5"
-                max-size: "10m"

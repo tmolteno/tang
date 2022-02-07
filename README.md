@@ -7,9 +7,9 @@ The synthesis tools can all be installed through Python:
     sudo pip3 install yowasp-yosys --upgrade
     sudo pip3 install yowasp-nextpnr-gowin --upgrade
  
-The final tool is openFPGALoader. It lives [https://github.com/trabucayre/openFPGALoader]. 
+The final tool is openFPGALoader. It lives [https://github.com/trabucayre/openFPGALoader].  There is a Dockerfile that will build this locally and you can program the FPGA using
 
-    wget https://github.com/trabucayre/openFPGALoader/releases/tag/v0.5.0
+    docker-compose up --build
  
 ## Running the blinky example
  
@@ -47,7 +47,9 @@ To just do the synthesis:
 
     make blinky-tangnano-prog
 
-Requires openFPGALoader to be installed in /usr/local/bin/openFPGALoader.
+Requires openFPGALoader to be installed in /usr/local/bin/openFPGALoader. Alternatively, you can use the Dockerfile and docker-compose to program the FPGA 
+
+    docker-compose up --build
 
     
 
