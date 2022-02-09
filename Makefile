@@ -4,6 +4,7 @@ PROGRAMMER ?= /usr/local/bin/openFPGALoader
 DEVICE ?= GW1N-LV1QN48C6/I5
 LED_PIN ?= 3
 CST ?= tangnano.cst
+BOARD ?= tangnano4k
 #
 # The tang nano 4i is
 # DEVICE = GW1NSR-LV4CQN48PC7/I6
@@ -32,7 +33,7 @@ clean:
 		--cst iob/tangnano-default.cst
 
 %-tangnano-prog: %-tangnano.fs
-	$(PROGRAMMER) -b tangnano $^
+	$(PROGRAMMER) -b ${BOARD} $^
 	
 %-tangnano-unpacked.v: %-tangnano.fs
 	gowin_unpack -d ${DEVICE} -o $@ $^
