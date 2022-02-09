@@ -51,7 +51,11 @@ Requires openFPGALoader to be installed in /usr/local/bin/openFPGALoader. Altern
 
     docker-compose up --build
 
-    
+## Target the Tang Nano 4k
+
+This uses a different device and pin number. Override these on the make command line
+
+    make DEVICE=GW1NSR-LV4CQN48PC7/I6 LED_PIN=8 blinky-tangnano-prog
 
 ### Using the tools by themselves
 
