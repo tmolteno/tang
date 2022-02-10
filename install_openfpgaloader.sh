@@ -16,3 +16,4 @@ cmake ..
 cmake --build .
 sudo make install
 popd
+sudo mv ./tmp_build/openFPGALoader-master/99-openfpgaloader.rules /etc/udev/rules.d/
