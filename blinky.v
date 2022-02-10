@@ -1,14 +1,14 @@
 module top (
-    input I_clk,
-    output reg O_led
+    input SYS_CLK,
+    output reg LED_R
 );
     // Set up a counter
     reg [25:0] ctr_q = 0;
 
-    always @(posedge I_clk)
+    always @(posedge SYS_CLK)
     begin
         ctr_q <= ctr_q + 1;
-        O_led <= ctr_q[23];
+        LED_R <= ctr_q[23];
     end
 
 endmodule
