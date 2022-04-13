@@ -2,6 +2,7 @@ YOSYS ?= yowasp-yosys
 NEXTPNR ?= yowasp-nextpnr-gowin
 PROGRAMMER ?= /usr/local/bin/openFPGALoader
 DEVICE ?= GW1N-LV1QN48C6/I5
+DEVICE_FAMILY ?= GW1N-1
 LED_PIN ?= 3
 CST ?= tangnano.cst
 BOARD ?= tangnano
@@ -14,8 +15,17 @@ all:
 	make DEVICE=GW1N-LV1QN48C6/I5 CST=tangnano.cst BOARD=tangnano blinky-tangnano-prog
 
 4k:
-	make DEVICE=GW1NSR-LV4CQN48PC7/I6 CST=tangnano4k.cst BOARD=tangnano4k blinky-tangnano-prog
-	
+	make DEVICE=GW1NSR-LV4CQN48PC7/I6 \
+		DEVICE_FAMILY=GW1NS-4 \
+		CST=tangnano4k.cst \
+		BOARD=tangnano4k blinky-tangnano-prog
+
+9k:
+	make DEVICE=GW1NR-LV9QN88PC6/I5 \
+		DEVICE_FAMILY=GW1N-9C \
+		CST=tangnano9k_constraints.cst \
+		BOARD=tangnano9k blinky-tangnano-prog
+
 unpacked: blinky-tangnano-unpacked.v
 	
 clean:
@@ -30,7 +40,7 @@ clean:
 	$(NEXTPNR) --json $< --write $@ --device ${DEVICE} --cst ${CST}
 
 %-tangnano.fs: %-tangnano.json
-	gowin_pack -d ${DEVICE} -o $@ $^
+	gowin_pack -d ${DEVICE_FAMILY} -o $@ $^
 
 %-default-flags-tangnano.json: %-tangnano-synth.json
 	$(NEXTPNR) --json $^ --write $@ --device ${DEVICE} \
@@ -40,4 +50,4 @@ clean:
 	$(PROGRAMMER) -b ${BOARD} $^
 	
 %-tangnano-unpacked.v: %-tangnano.fs
-	gowin_unpack -d ${DEVICE} -o $@ $^
+	gowin_unpack -d ${DEVICE_FAMILY} -o $@ $^
