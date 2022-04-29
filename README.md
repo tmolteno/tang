@@ -1,13 +1,23 @@
 # Open Source Verilog tools for the Tang Nano
 
+These amazing tools are part of the yowasp [https://yowasp.org] project that builds cross-platform tools based on YoSys.
+
 ## INSTALL
 
 The synthesis tools can all be installed through Python:
 
     sudo pip3 install yowasp-yosys --upgrade
     sudo pip3 install yowasp-nextpnr-gowin --upgrade
+
+There is a script to do this
+
+    ./INSTALL.sh
  
-The final tool is openFPGALoader. It lives [https://github.com/trabucayre/openFPGALoader].  There is a Dockerfile that will build this locally and you can program the FPGA using
+The final tool is openFPGALoader. It lives [https://github.com/trabucayre/openFPGALoader].  There is a script to build this
+
+    ./install_openfpgaloader.sh
+
+Alternately there is a Docker container that can do the same thing...
 
     docker-compose up --build
  
