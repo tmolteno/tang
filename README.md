@@ -1,6 +1,6 @@
 # Open Source Verilog tools for the Tang Nano
 
-These amazing tools are part of the yowasp [https://yowasp.org] project that builds cross-platform tools based on YoSys.
+These amazing tools are part of the yowasp [https://yowasp.org] project that builds cross-platform tools based on YoSys [https://github.com/YosysHQ/].
 
 ## INSTALL
 
