@@ -5,6 +5,7 @@ sudo apt-get update -y &&  sudo apt-get install -y \
     cmake pkg-config make g++ wget unzip
 
 # setup working directory
+rm -rf ./tmp_build
 mkdir ./tmp_build
 pushd ./tmp_build
 wget https://github.com/trabucayre/openFPGALoader/archive/refs/heads/master.zip
@@ -14,6 +15,6 @@ mkdir -p build
 cd build
 cmake ..
 cmake --build .
-sudo make install
+sudo make -j `nproc` install
 popd
 sudo mv ./tmp_build/openFPGALoader-master/99-openfpgaloader.rules /etc/udev/rules.d/
