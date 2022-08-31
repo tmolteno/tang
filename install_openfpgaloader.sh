@@ -8,13 +8,14 @@ sudo apt-get update -y &&  sudo apt-get install -y \
 rm -rf ./tmp_build
 mkdir ./tmp_build
 pushd ./tmp_build
-wget https://github.com/trabucayre/openFPGALoader/archive/refs/heads/master.zip
-unzip master.zip
-cd openFPGALoader-master
+curl -LJ `curl -s https://api.github.com/repos/trabucayre/openFPGALoader/releases/latest | python3  -c 'import sys, json; print(json.load(sys.stdin)["tarball_url"])'` | tar zxf - --strip=1
+#wget https://github.com/trabucayre/openFPGALoader/archive/refs/heads/master.zip
+#unzip master.zip
+#cd openFPGALoader-master
 mkdir -p build
 cd build
 cmake ..
 cmake --build .
 sudo make -j `nproc` install
 popd
-sudo mv ./tmp_build/openFPGALoader-master/99-openfpgaloader.rules /etc/udev/rules.d/
+sudo mv ./tmp_build/99-openfpgaloader.rules /etc/udev/rules.d/
