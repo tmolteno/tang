@@ -65,7 +65,7 @@ clean:
 		--cst iob/tangnano-default.cst
 
 %-tangnano-prog: %-tangnano.fs
-	$(PROGRAMMER) -b ${BOARD} $^
+	$(PROGRAMMER) -f -b ${BOARD} $^
 	
 %-tangnano-unpacked.v: %-tangnano.fs
 	gowin_unpack -d ${DEVICE_FAMILY} -o $@ $^
