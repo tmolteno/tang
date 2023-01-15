@@ -16,6 +16,6 @@ mkdir -p build
 cd build
 cmake ..
 cmake --build .
-sudo make install
+sudo make -j `nproc` install
 popd
 sudo mv ./tmp_build/99-openfpgaloader.rules /etc/udev/rules.d/
