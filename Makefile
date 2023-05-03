@@ -32,12 +32,6 @@ all:
 		CST=tangnano1k.cst \
 		BOARD=tangnano1k ${MAIN}-tangnano-prog
 
-1k:
-	make DEVICE=GW1NZ-LV1QN48C6/I5 \
-		DEVICE_FAMILY=GW1NZ-1 \
-		CST=tangnano1k.cst \
-		BOARD=tangnano1k blinky-tangnano-prog
-
 4k:
 	make DEVICE=GW1NSR-LV4CQN48PC7/I6 \
 		DEVICE_FAMILY=GW1NS-4 \
