@@ -16,16 +16,17 @@ endmodule
 
 module tang_tx(input clk_27MHz,
     input key,
-    output status_led,
-    output key_led,
-    output tx_out);
+    output reg status_led,
+    output reg key_led,
+    output reg tx_out);
 
     // Set up a counter
     reg [24:0] ctr_q = 0;
-    reg tx_out = 0;
-    reg status_led = 0;
-    reg key_led = 0;
-
+    initial begin
+	status_led = 0;
+    	key_led = 0;
+    	tx_out = 0;
+    end
 
     always @(posedge clk_27MHz)
     begin

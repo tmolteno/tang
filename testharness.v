@@ -6,7 +6,7 @@ module testharness();
     reg clk;
     reg key;
 
-    wire led, tx;
+    wire led1, led2, tx;
 
     initial begin
         $dumpfile("./test.lx2");
@@ -27,6 +27,6 @@ module testharness();
 
     always #1 clk=!clk;
 
-    top dut(.SYS_CLK(clk), .BTN_B(key), .LED_R(led), .TX_OUT(tx));
+    top dut(.SYS_CLK(clk), .SW1(key), .LED1(led1), .LED2(led2), .TX_OUT(tx));
 
 endmodule
