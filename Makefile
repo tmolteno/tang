@@ -7,6 +7,7 @@ LED_PIN ?= 3
 CST ?= tangnano.cst
 BOARD ?= tangnano
 MAIN ?= tang_tx
+MODULE_TOP=tang_tx
 #
 # The tang nano 4k is
 # DEVICE = GW1NSR-LV4CQN48PC7/I6
@@ -21,6 +22,13 @@ view:   icarus
 	gtkwave test.lx2 view.gtkw
 
 
+dot:
+#		 -p "read_verilog -lib +path/to/lib.v" 
+	${YOSYS} -p "read_verilog -sv -formal ${MAIN}.v" \
+		 -p "hierarchy -check -top ${MODULE_TOP}" \
+		 -p "proc" \
+		 -p "show -prefix ${MAIN} -notitle -colors 2 -width -format dot"
+	xdot $(MAIN).dot
 
 
 all:
