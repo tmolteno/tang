@@ -26,7 +26,7 @@ dot:
 #		 -p "read_verilog -lib +path/to/lib.v" 
 	${YOSYS} -p "read_verilog -sv -formal ${MAIN}.v" \
 		 -p "hierarchy -check -top ${MODULE_TOP}" \
-		 -p "proc" \
+		 -p "proc; opt" \
 		 -p "show -prefix ${MAIN} -notitle -colors 2 -width -format dot"
 	xdot $(MAIN).dot
 
@@ -60,7 +60,7 @@ clean:
 .PHONY: all clean 4k
 
 %-tangnano-synth.json: %.v
-	$(YOSYS) -D LEDS_NR=${LED_PIN} -p "read_verilog $^; synth_gowin -json $@" $^
+	$(YOSYS) -D LEDS_NR=${LED_PIN} -p "read_verilog $^; proc; opt; synth_gowin -json $@" $^
 
 %-tangnano.json: %-tangnano-synth.json ${CST}
 	$(NEXTPNR) --json $< --write $@ --device ${DEVICE} --cst ${CST}
